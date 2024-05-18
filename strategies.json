@@ -39,6 +39,125 @@
           "Daily levels (open-close, high-low of the candles on the daily chart)",
           "Consolidation areas"
         ]
+      },
+      {
+        "strategyName": "Stock mooning",
+        "timeOfDay": "9:45 - 13:30 (best 10:00 - 12:00)",
+        "indicators": [
+          "SPY trending up",
+          "SPY trending sideways",
+          "More orders on the ASK side in LVL2",
+          "Increasing volume on the green candles",
+          "5 minute chart with two consecutive red candles with higher lows and higher highs (white candle can appear but it should also have HL&HH)",
+          "PDC nearby (preferably below)",
+          "Pre market high nearby (preferably below)"
+        ],
+        "confirmations": [
+          "Buying volume increases",
+          "T&S printing speed increases and price is going up",
+          "Two 1 minute red candles with HL&HH forming (after a pullback or consolidation) but no more than 4 if the price is too extended"
+        ],
+        "entrySignals": [
+          "T&S prints price that is higher than high of the day price"
+        ],
+        "rules": [
+          "No trading after 14h market time",
+          "Move to B/E at least after 1R of price going in my favor",
+          "After a very long (> 2h) trend down or consolidation, wait for a pullback and see if it will go up",
+          "If the price is too extended (check ATR) and there are more than 4 red candles, wait for the pullback",
+          "When in trade and after 10-15 minutes it is going sideways and then down, exit the trade"
+        ],
+        "stopLoss": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Previous or current 5 minute candle low",
+          "If 5 minute candles are very large, possibly their middle"
+        ],
+        "targets": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Daily levels (open-close, high-low of the candles on the daily chart)",
+          "Consolidation areas"
+        ]
+      }
+    ]
+  },
+  {
+    "traderName": "Dzoka Stoka",
+    "strategies": [
+      {
+        "strategyName": "Break of High of Day",
+        "timeOfDay": "9:45 - 13:30 (best 10:00 - 12:00)",
+        "indicators": [
+          "SPY trending up",
+          "SPY trending sideways",
+          "More orders on the ASK side in LVL2",
+          "Increasing volume on the green candles",
+          "5 minute chart with two consecutive red candles with higher lows and higher highs (white candle can appear but it should also have HL&HH)",
+          "PDC nearby (preferably below)",
+          "Pre market high nearby (preferably below)"
+        ],
+        "confirmations": [
+          "Buying volume increases",
+          "T&S printing speed increases and price is going up",
+          "Two 1 minute red candles with HL&HH forming (after a pullback or consolidation) but no more than 4 if the price is too extended"
+        ],
+        "entrySignals": [
+          "T&S prints price that is higher than high of the day price"
+        ],
+        "rules": [
+          "No trading after 14h market time",
+          "Move to B/E at least after 1R of price going in my favor",
+          "After a very long (> 2h) trend down or consolidation, wait for a pullback and see if it will go up",
+          "If the price is too extended (check ATR) and there are more than 4 red candles, wait for the pullback",
+          "When in trade and after 10-15 minutes it is going sideways and then down, exit the trade"
+        ],
+        "stopLoss": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Previous or current 5 minute candle low",
+          "If 5 minute candles are very large, possibly their middle"
+        ],
+        "targets": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Daily levels (open-close, high-low of the candles on the daily chart)",
+          "Consolidation areas"
+        ]
+      },
+      {
+        "strategyName": "Break of Neck",
+        "timeOfDay": "9:45 - 13:30 (best 10:00 - 12:00)",
+        "indicators": [
+          "SPY trending up",
+          "SPY trending sideways",
+          "More orders on the ASK side in LVL2",
+          "Increasing volume on the green candles",
+          "5 minute chart with two consecutive red candles with higher lows and higher highs (white candle can appear but it should also have HL&HH)",
+          "PDC nearby (preferably below)",
+          "Pre market high nearby (preferably below)"
+        ],
+        "confirmations": [
+          "Buying volume increases",
+          "T&S printing speed increases and price is going up",
+          "Two 1 minute red candles with HL&HH forming (after a pullback or consolidation) but no more than 4 if the price is too extended"
+        ],
+        "entrySignals": [
+          "T&S prints price that is higher than high of the day price"
+        ],
+        "rules": [
+          "No trading after 14h market time",
+          "Move to B/E at least after 1R of price going in my favor",
+          "After a very long (> 2h) trend down or consolidation, wait for a pullback and see if it will go up",
+          "If the price is too extended (check ATR) and there are more than 4 red candles, wait for the pullback",
+          "When in trade and after 10-15 minutes it is going sideways and then down, exit the trade"
+        ],
+        "stopLoss": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Previous or current 5 minute candle low",
+          "If 5 minute candles are very large, possibly their middle"
+        ],
+        "targets": [
+          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
+          "Daily levels (open-close, high-low of the candles on the daily chart)",
+          "Consolidation areas"
+        ]
       }
     ]
   }
