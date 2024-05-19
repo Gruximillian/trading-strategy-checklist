@@ -15,12 +15,11 @@ window.addEventListener('load', async () => {
     return output.trim();
   };
 
-  const traderSelect = document.getElementById('trader-selection');
-  const strategySelect = document.getElementById('strategy-selection');
-  const strategyHeader = document.getElementById('selected-strategy-name');
-  const tradeChecklistForm = document.getElementById('trade-checklist');
-
-  let strategies;
+  const toggleCheckbox = e => {
+    if (e.target.tagName === 'LABEL') {
+      e.target.classList.toggle('checked');
+    }
+  };
 
   const createOption = (value) => {
     const option = document.createElement('option');
@@ -31,19 +30,6 @@ window.addEventListener('load', async () => {
 
   const populateSelectField = (values, parent) => {
     values.forEach(value => parent.appendChild(createOption(value)));
-  };
-
-  const resetStrategySelect = () => {
-    strategySelect.innerHTML = null;
-    const placeholder = document.createElement('option');
-    placeholder.value = 'none';
-    placeholder.innerText = 'Choose a strategy';
-    strategySelect.appendChild(placeholder);
-  };
-
-  const resetStrategyForm = () => {
-    tradeChecklistForm.innerHTML = null;
-    strategyHeader.innerText = null;
   };
 
   const renderChecklistEntry = (entry, sectionName) => {
@@ -62,7 +48,7 @@ window.addEventListener('load', async () => {
     return entryContainer;
   }
 
-  const renderSelectedStrategyForm = (strategy) => {
+  const renderSelectedStrategyForm = (strategy, parent) => {
     const sections = Object.entries(strategy.strategyChecklist);
 
     sections.forEach(section => {
@@ -75,8 +61,28 @@ window.addEventListener('load', async () => {
 
       container.appendChild(legend);
       sectionChecklist.forEach(entry => container.appendChild(renderChecklistEntry(entry, sectionName)));
-      tradeChecklistForm.appendChild(container);
+      parent.appendChild(container);
     });
+  };
+
+  const traderSelect = document.getElementById('trader-selection');
+  const strategySelect = document.getElementById('strategy-selection');
+  const strategyHeader = document.getElementById('selected-strategy-name');
+  const tradeChecklistForm = document.getElementById('trade-checklist');
+
+  let strategies;
+
+  const resetStrategySelect = () => {
+    strategySelect.innerHTML = null;
+    const placeholder = document.createElement('option');
+    placeholder.value = 'none';
+    placeholder.innerText = 'Choose a strategy';
+    strategySelect.appendChild(placeholder);
+  };
+
+  const resetStrategyForm = () => {
+    tradeChecklistForm.innerHTML = null;
+    strategyHeader.innerText = null;
   };
 
   const traderNames = strategyDocument.map(trader => trader.traderName);
@@ -106,14 +112,10 @@ window.addEventListener('load', async () => {
     strategyHeader.innerText = strategyName;
 
     const selectedStrategy = strategies.filter((strategy) => strategy.strategyName === strategyName)[0];
-    renderSelectedStrategyForm(selectedStrategy);
+    renderSelectedStrategyForm(selectedStrategy, tradeChecklistForm);
   };
 
   traderSelect.addEventListener('change', updateTrader);
   strategySelect.addEventListener('change', e => updateStrategy(e.target.value, strategies));
-  tradeChecklistForm.addEventListener('click', e => {
-    if (e.target.tagName === 'LABEL') {
-      e.target.classList.toggle('checked');
-    }
-  });
+  tradeChecklistForm.addEventListener('click', toggleCheckbox);
 });
