@@ -2,14 +2,12 @@ window.addEventListener('load', async () => {
   const strategyDocument = await fetch('./strategies.json')
     .then(response => response.json()).then(json => json);
 
-  const isUppercase = a => a === a.toUpperCase();
-
   const camelCaseToWords = (string) => {
     const letters = string.split('');
     let output = '';
 
     letters.forEach(letter => {
-      output = isUppercase(letter) ? `${output} ${letter.toLowerCase()}` : `${output}${letter}`;
+      output = letter === letter.toUpperCase() ? `${output} ${letter.toLowerCase()}` : `${output}${letter}`;
     });
 
     return output.trim();
