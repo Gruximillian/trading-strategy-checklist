@@ -2,17 +2,17 @@ window.addEventListener('load', async () => {
   const strategyDocument = await fetch('./strategies.json')
     .then(response => response.json()).then(json => json);
 
-  // TODO: Maybe write a function that transforms camel case into split words
-  const propNameMap = {
-    strategyName: 'strategy name',
-    timeOfDay: 'time of day',
-    rules: 'rules',
-    stopLoss: 'stop loss',
-    targets: 'targets',
-    strategyChecklist: 'strategy checklist',
-    indicators: 'indicators',
-    confirmations: 'confirmations',
-    entrySignals: 'entry signals'
+  const isUppercase = a => a === a.toUpperCase();
+
+  const camelCaseToWords = (string) => {
+    const letters = string.split('');
+    let output = '';
+
+    letters.forEach(letter => {
+      output = isUppercase(letter) ? `${output} ${letter.toLowerCase()}` : `${output}${letter}`;
+    });
+
+    return output.trim();
   };
 
   const traderSelect = document.getElementById('trader-selection');
@@ -53,7 +53,7 @@ window.addEventListener('load', async () => {
 
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('name', sectionName);
-    checkbox.setAttribute('value', entry); // TODO: Do I need this at all?
+    checkbox.setAttribute('value', entry);
     label.innerText = entry;
 
     entryContainer.appendChild(checkbox);
@@ -71,7 +71,7 @@ window.addEventListener('load', async () => {
       const legend = document.createElement('legend');
 
       container.classList.add('form-section');
-      legend.innerText = propNameMap[sectionName];
+      legend.innerText = camelCaseToWords(sectionName);
 
       container.appendChild(legend);
       sectionChecklist.forEach(entry => container.appendChild(renderChecklistEntry(entry, sectionName)));
