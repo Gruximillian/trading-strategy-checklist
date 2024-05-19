@@ -16,6 +16,13 @@ window.addEventListener('load', async () => {
   const toggleCheckbox = e => {
     if (e.target.tagName === 'LABEL') {
       e.target.classList.toggle('checked');
+      const parent = e.target.parentElement;
+      const checkboxes = parent.querySelectorAll('label');
+      const checked = [...checkboxes].filter(container => container.classList.contains('checked')).length;
+      const monitor = parent.querySelector('.check-monitor');
+
+      // TODO: Change the monitor background color according to the percentage of checked boxes
+      monitor.innerText = `${checked}/${checkboxes.length}`;
     }
   };
 
@@ -53,10 +60,14 @@ window.addEventListener('load', async () => {
       const [sectionName, sectionChecklist] = section;
       const container = document.createElement('fieldset');
       const legend = document.createElement('legend');
+      const monitor = document.createElement('div');
 
+      monitor.innerText = `0/${sectionChecklist.length}`;
       container.classList.add('form-section');
+      monitor.classList.add('check-monitor');
       legend.innerText = camelCaseToWords(sectionName);
 
+      container.appendChild(monitor);
       container.appendChild(legend);
       sectionChecklist.forEach(entry => container.appendChild(renderChecklistEntry(entry, sectionName)));
       parent.appendChild(container);
