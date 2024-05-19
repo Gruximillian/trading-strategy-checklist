@@ -5,8 +5,7 @@ window.addEventListener('load', async () => {
   const traderSelect = document.getElementById('trader-selection');
   const strategySelect = document.getElementById('strategy-selection');
 
-  let traders = [];
-  let strategies = [];
+  let strategies;
 
   const createOption = (value) => {
     const option = document.createElement('option');
@@ -18,35 +17,43 @@ window.addEventListener('load', async () => {
   const populateSelectField = (values, parent) => {
     values.forEach(value => parent.appendChild(createOption(value)));
   };
-  traderSelect.addEventListener('change', updateTrader);
 
-  traders = strategyDocument.map(trader => trader.traderName);
-  populateSelectField(traders, traderSelect);
+  const resetStrategySelect = () => {
+    strategySelect.innerHTML = null;
+    const placeholder = document.createElement('option');
+    placeholder.value = 'none';
+    placeholder.innerText = 'Choose a strategy';
+    strategySelect.appendChild(placeholder);
+  };
 
-  function updateTrader(e) {
+  const traderNames = strategyDocument.map(trader => trader.traderName);
+  populateSelectField(traderNames, traderSelect);
+
+  const updateTrader = (e) => {
     const traderName = e.target.value;
+    resetStrategySelect();
 
     if (traderName === 'none') {
+      return;
+    }
+
+    strategies = strategyDocument.filter(trader => trader.traderName === traderName)?.[0]?.strategies;
+    const strategyNames = strategies.map(strategy => strategy.strategyName);
+    populateSelectField(strategyNames, strategySelect);
+  };
+
+  const updateStrategy = (strategyName, strategies) => {
+    if (strategyName === 'none') {
       // TODO: Handle this with clearing the strategy selection and page display
       return;
     }
 
-    const strategies = strategyDocument.filter(trader => trader.traderName === traderName)?.[0]?.strategies;
-    const strategyNames = strategies.map(strategy => strategy.strategyName);
-    populateSelectField(strategyNames, strategySelect);
-    strategySelect.addEventListener('change', updateStrategy);
+    const selectedStrategy = strategies.filter((strategy) => strategy.strategyName === strategyName);
+    console.log(selectedStrategy[0]);
+  };
 
-    // TODO: Decouple from updateTrader if possible
-    function updateStrategy(e) {
-      const strategyName = e.target.value;
-
-      if (strategyName === 'none') {
-        // TODO: Handle this with clearing the strategy selection and page display
-        return;
-      }
-
-      const selectedStrategy = strategies.filter((strategy) => strategy.strategyName === strategyName);
-      console.log(selectedStrategy[0]);
-    }
-  }
+  traderSelect.addEventListener('change', updateTrader);
+  strategySelect.addEventListener('change', (e) => {
+    updateStrategy(e.target.value, strategies);
+  });
 });

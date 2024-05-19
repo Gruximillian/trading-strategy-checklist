@@ -41,41 +41,43 @@
         ]
       },
       {
-        "strategyName": "Stock mooning",
-        "timeOfDay": "9:45 - 13:30 (best 10:00 - 12:00)",
+        "strategyName": "Break of High of Day",
+        "timeOfDay": "9:30 - 15:00 (best 10:00 - 12:00)",
         "indicators": [
-          "SPY trending up",
-          "SPY trending sideways",
-          "More orders on the ASK side in LVL2",
-          "Increasing volume on the green candles",
-          "5 minute chart with two consecutive red candles with higher lows and higher highs (white candle can appear but it should also have HL&HH)",
-          "PDC nearby (preferably below)",
-          "Pre market high nearby (preferably below)"
+          "SPY trending up on good volume",
+          "SPY trending sideways and then punches up on good volume",
+          "Big orders on the ASK side in LVL2",
+          "Increasing volume on the green candles on 1 minute and 5 minute charts",
+          "5 minute chart with two consecutive green candles with higher lows and higher highs (red candle can appear but it should also have HL&HH)",
+          "PDC/PMH nearby (preferably below)",
+          "Price action goes from LOD to HOD in a smooth fashion"
         ],
         "confirmations": [
-          "Buying volume increases",
-          "T&S printing speed increases and price is going up",
-          "Two 1 minute red candles with HL&HH forming (after a pullback or consolidation) but no more than 4 if the price is too extended"
+          "Sudden buying volume increase",
+          "T&S printing speed increases while price is going up",
+          "At least two 1 minute green candles with HL&HH forming (after a pullback or consolidation) but no more than 4 if the price is too extended"
         ],
         "entrySignals": [
-          "T&S prints price that is higher than high of the day price"
+          "Price of the stock rises above the HOD on the b id side",
+          "Price begins to approach HOD fast on high volume",
+          "On pullback, if the price makes two green candles with HL&HH on high volume"
         ],
         "rules": [
-          "No trading after 14h market time",
           "Move to B/E at least after 1R of price going in my favor",
-          "After a very long (> 2h) trend down or consolidation, wait for a pullback and see if it will go up",
-          "If the price is too extended (check ATR) and there are more than 4 red candles, wait for the pullback",
-          "When in trade and after 10-15 minutes it is going sideways and then down, exit the trade"
+          "Don't chase missed entry",
+          "Don't enter trades if the volume is decreasing",
+          "Avoid trades when the price action is choppy (very big pullbacks)",
+          "Don't enter on small pullbacks (a few candles) that appear after a recent BHOD happened on a larger time period (manny candles between HODs)"
         ],
         "stopLoss": [
-          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
-          "Previous or current 5 minute candle low",
-          "If 5 minute candles are very large, possibly their middle"
+          "Any significant level if close (PDC, PMH, PML, pivots, VWAP, daily levels...)",
+          "Previous or current 5 minute candle low, or if the candles are large possibly their middle",
+          "Consolidation areas"
         ],
         "targets": [
-          "Any significant level if close (PDC, pre market low, pivots, VWAP...)",
-          "Daily levels (open-close, high-low of the candles on the daily chart)",
-          "Consolidation areas"
+          "Any significant level if close (PDC, PMH, PML, pivots, VWAP, daily levels...) - consult ATR",
+          "Large orders on LVL2",
+          "Monitor SPY levels and behaviour as well"
         ]
       }
     ]
@@ -84,7 +86,7 @@
     "traderName": "Dzoka Stoka",
     "strategies": [
       {
-        "strategyName": "Break of High of Day",
+        "strategyName": "Stock mooning",
         "timeOfDay": "9:45 - 13:30 (best 10:00 - 12:00)",
         "indicators": [
           "SPY trending up",
